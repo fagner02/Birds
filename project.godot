@@ -6,17 +6,22 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
 [application]
 
 config/name="Birds"
 run/main_scene="res://Spatial.tscn"
+config/features=PackedStringArray("4.1", "C#")
 config/icon="res://icon.png"
 
 [display]
 
 window/handheld/orientation="portrait"
+
+[dotnet]
+
+project/assembly_name="Birds"
 
 [gui]
 

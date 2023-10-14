@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class Bird : Polygon2D
+public partial class Bird : Polygon2D
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -15,28 +15,28 @@ public class Bird : Polygon2D
 	}
 
 	//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _Process(double delta)
 	{
 		return;
 		var screenSize = GetViewportRect().Size;
 		var x = (rand.NextDouble() > 0.5 ? -1 : 1) * (float)rand.NextDouble() * 5;
 		var y = (rand.NextDouble() > 0.5 ? -1 : 1) * (float)rand.NextDouble() * 5;
 
-		velocity.x += x;
-		velocity.y += y;
+		velocity.X += x;
+		velocity.Y += y;
 
-		if (Position.x + velocity.x < 0 || Position.x + velocity.x > screenSize.x)
+		if (Position.X + velocity.X < 0 || Position.X + velocity.X > screenSize.X)
 		{
-			velocity.x *= -1;
+			velocity.X *= -1;
 		}
-		if (Position.y + velocity.y < 0 || Position.y + velocity.y > screenSize.y)
+		if (Position.Y + velocity.Y < 0 || Position.Y + velocity.Y > screenSize.Y)
 		{
-			velocity.y *= -1;
+			velocity.Y *= -1;
 		}
 
-		var hip = Math.Sqrt(velocity.x * velocity.x + velocity.y * velocity.y);
-		var angle = (float)Math.Acos(velocity.x / hip);
-		Translate(velocity * 10 * delta);
-		Rotation = velocity.y < 0 ? -angle : angle;
+		var hip = Math.Sqrt(velocity.X * velocity.X + velocity.Y * velocity.Y);
+		var angle = (float)Math.Acos(velocity.X / hip);
+		Translate(velocity * 10f * (float)delta);
+		Rotation = velocity.Y < 0 ? -angle : angle;
 	}
 }
