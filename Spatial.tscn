@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5gghvyke1sws"]
 
-[ext_resource type="Script" path="res://Scene.cs" id="1"]
+[ext_resource type="Script" uid="uid://ps5l6km5r48h" path="res://Scene.cs" id="1"]
 
 [node name="Spatial" type="Node3D"]
 script = ExtResource("1")

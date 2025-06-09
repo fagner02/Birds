@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://rsduj4ly8kmm"]
 
-[ext_resource type="Script" path="res://Bird.cs" id="1"]
+[ext_resource type="Script" uid="uid://cw3mu4yrcfli7" path="res://Bird.cs" id="1"]
 
 [node name="Polygon2D" type="Polygon2D"]
 position = Vector2(418, 257)

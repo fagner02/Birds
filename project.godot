@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Birds"
 run/main_scene="res://Spatial.tscn"
-config/features=PackedStringArray("4.1", "C#")
+config/features=PackedStringArray("4.4", "C#")
 config/icon="res://icon.png"
 
 [display]
