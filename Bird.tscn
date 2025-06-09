@@ -3,18 +3,18 @@
 [ext_resource type="Script" uid="uid://cw3mu4yrcfli7" path="res://Bird.cs" id="1"]
 
 [node name="Polygon2D" type="Polygon2D"]
-position = Vector2(418, 257)
 scale = Vector2(0.1, 0.1)
 offset = Vector2(-268.672, -34.4934)
-polygon = PackedVector2Array(61.0461, 24.3217, 120.99, 92.5845, 227.874, 59.4623, 269.956, 36.0329, 224.795, 6.74611, 131.395, -30.3505)
+polygon = PackedVector2Array(59.672, 34.4934, 133.672, 101.493, 226.672, 61.4934, 268.672, 34.4934, 224.795, 6.74611, 131.395, -30.3505)
 script = ExtResource("1")
 
 [node name="Polygon2D2" type="Polygon2D" parent="."]
-position = Vector2(-178.75, -7.49996)
+position = Vector2(-178.75, -0.49996)
 offset = Vector2(-134.48, -126.561)
-polygon = PackedVector2Array(105.23, 78.061, 141.23, 126.061, 101.23, 170.061, 59.2303, 122.061)
+polygon = PackedVector2Array(101.23, 79.061, 141.23, 127.061, 101.23, 170.061, 58.23, 126.061)
 
-[node name="Polygon2D3" type="Polygon2D" parent="."]
-position = Vector2(-226, -12)
+[node name="Polygon2D3" type="Polygon2D" parent="Polygon2D2"]
+position = Vector2(-47.25, -5.5)
+scale = Vector2(1, 1)
 offset = Vector2(-162.774, -121.29)
-polygon = PackedVector2Array(78.7739, 125.29, 124.774, 97.29, 163.628, 126.881, 122.774, 155.29)
+polygon = PackedVector2Array(78.774, 126.29, 122.774, 97.29, 163.628, 126.881, 122.774, 155.29)

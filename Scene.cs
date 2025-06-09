@@ -13,6 +13,7 @@ public partial class Scene : Node3D
 
 	public override void _Ready()
 	{
+
 		for (int i = 0; i < 10; i++)
 		{
 			var bird = (Node2D)GD.Load<PackedScene>("res://Bird.tscn").Instantiate();
@@ -31,6 +32,7 @@ public partial class Scene : Node3D
 		{
 			Vector2 pos = birds[i].GlobalPosition;
 			double angle = (pos - mouse).Angle();
+			//double angle = rand.NextDouble() * Math.PI * 2;
 			double diff = Math.Abs(angle - directions[i]);
 			double diff2 = (Math.PI * 2) - diff;
 
@@ -43,20 +45,20 @@ public partial class Scene : Node3D
 			if (angle > directions[i])
 				nudge *= -1;
 
-			nudges[i] += nudge * 0.1;
+			nudges[i] += nudge * 5 * delta;
 			if (nudges[i] > 1)
 				nudges[i] = 1;
 			if (nudges[i] < -1)
 				nudges[i] = -1;
 
 
-			directions[i] += nudges[i] * delta * 5;
+			directions[i] += nudges[i] * delta * 10;
 			if (Math.Abs(directions[i]) > Math.PI * 2)
 				directions[i] = directions[i] * -1 % Math.PI * 2;
 
 			float y = (float)Math.Sin(directions[i]);
 			float x = (float)Math.Cos(directions[i]);
-			Console.WriteLine($"{diff2}, {diff}, {directions[i]}, ({x},{y})");
+
 			if (birds[i].Position.X + x < 0 || birds[i].Position.X + x > screenSize.X)
 			{
 				birds[i].Position = new Vector2(
@@ -74,7 +76,11 @@ public partial class Scene : Node3D
 
 			birds[i].Translate(new Vector2(x, y) * (float)delta * 500);
 
-			birds[i].Rotation = (float)(1 * directions[i]);
+			birds[i].Rotation = (float)directions[i];
+			Node2D child = (Node2D)birds[i].GetChild(0);
+			child.Rotation = (float)Math.Clamp(child.Rotation + (nudges[i] * -0.5), -0.35, 0.35);
+			child = (Node2D)child.GetChild(0);
+			child.Rotation = (float)Math.Clamp(child.Rotation + (nudges[i] * -0.5), -0.35, 0.35);
 		}
 	}
 }
