@@ -10,15 +10,19 @@ public partial class Scene : Node3D
 	private readonly List<double> directions = [];
 	private readonly List<double> nudges = [];
 	private readonly Random rand = new();
+	private readonly double speed = 1;
 
 	public override void _Ready()
 	{
 
-		for (int i = 0; i < 10; i++)
+		Vector2 screenSize = GetViewport().GetVisibleRect().Size;
+		PackedScene scene = GD.Load<PackedScene>("res://Bird.tscn");
+		for (int i = 0; i < 100; i++)
 		{
-			var bird = (Node2D)GD.Load<PackedScene>("res://Bird.tscn").Instantiate();
+			Node2D bird = (Node2D)scene.Instantiate();
 			AddChild(bird);
 			birds.Add(bird);
+			bird.Position = new Vector2(screenSize.X / 2, screenSize.Y / 2);
 			directions.Add(rand.NextDouble() * Math.PI * 2.0);
 			nudges.Add(rand.NextDouble() * Math.PI * 2.0);
 		}
@@ -45,14 +49,14 @@ public partial class Scene : Node3D
 			if (angle > directions[i])
 				nudge *= -1;
 
-			nudges[i] += nudge * 5 * delta;
+			nudges[i] += nudge * 5 * delta * speed;
 			if (nudges[i] > 1)
 				nudges[i] = 1;
 			if (nudges[i] < -1)
 				nudges[i] = -1;
 
 
-			directions[i] += nudges[i] * delta * 10;
+			directions[i] += nudges[i] * delta * 10 * speed;
 			if (Math.Abs(directions[i]) > Math.PI * 2)
 				directions[i] = directions[i] * -1 % Math.PI * 2;
 
@@ -74,13 +78,13 @@ public partial class Scene : Node3D
 				);
 			}
 
-			birds[i].Translate(new Vector2(x, y) * (float)delta * 500);
+			birds[i].Translate(new Vector2(x, y) * (float)(delta * 500.0 * speed));
 
 			birds[i].Rotation = (float)directions[i];
 			Node2D child = (Node2D)birds[i].GetChild(0);
-			child.Rotation = (float)Math.Clamp(child.Rotation + (nudges[i] * -0.5), -0.35, 0.35);
+			child.Rotation = (float)(0.35 * -nudges[i]);
 			child = (Node2D)child.GetChild(0);
-			child.Rotation = (float)Math.Clamp(child.Rotation + (nudges[i] * -0.5), -0.35, 0.35);
+			child.Rotation = (float)(0.35 * -nudges[i]);
 		}
 	}
 }

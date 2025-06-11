@@ -15,6 +15,5 @@ polygon = PackedVector2Array(101.23, 79.061, 141.23, 127.061, 101.23, 170.061, 5
 
 [node name="Polygon2D3" type="Polygon2D" parent="Polygon2D2"]
 position = Vector2(-47.25, -5.5)
-scale = Vector2(1, 1)
 offset = Vector2(-162.774, -121.29)
 polygon = PackedVector2Array(78.774, 126.29, 122.774, 97.29, 163.628, 126.881, 122.774, 155.29)
